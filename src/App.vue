@@ -6,7 +6,7 @@
 
     <main>
       <section class="player">
-        <h2 class="song-title">{{}} - <span>{{}}</span></h2>
+        <h2 class="song-title">{{current.title}} - <span>{{current.artist}}</span></h2>
       </section>
 
     </main>
@@ -21,31 +21,34 @@ export default {
   data() {
     return {
       current: {
-        index: 0,
-
       },
+      index:0,
       songs:[{
         title:"Jimmy Cooks",
         artist:"Drake & 21 Savage",
-        src: ("./assets/drake-ft-21-savage-jimmy-cooks.mp3")
+        src: require("./assets/drake-ft-21-savage-jimmy-cooks.mp3")
       },
       {
         title:"Sticky",
         artist: "Drake",
-        src: ("./assets/drake-sticky.mp3")
+        src: require("./assets/drake-sticky.mp3")
       },
       {
           title: "Massive",
           artist: "Drake",
-          src: ("./assets/drake-massive.mp3")
+          src: require("./assets/drake-massive.mp3")
 
       }
-      ]
+      ],
+      player: new Audio()
     }
   },
 
   created() {
     this.current = this.songs[this.index]
+    this.player.src = this.current.src
+    this.player.play()
+
   }
 }
 
