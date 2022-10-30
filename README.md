@@ -1,7 +1,9 @@
-# Vue 3 + Vite
+Vue 3 + Vite
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+I made this music app website by using Vue3, Vite and watching Tyler Potts tutorial on Youtube. It's simple music player!
 
-## Recommended IDE Setup
+![1](https://user-images.githubusercontent.com/73862428/198903102-8b07426d-c96e-4216-9862-fb6d57895250.png)
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+![2](https://user-images.githubusercontent.com/73862428/198903103-0178ea24-0bc9-4ddb-97cd-dcdf79904929.png)
+
+![3](https://user-images.githubusercontent.com/73862428/198903104-05d60f5c-2013-426a-95d3-72429e350911.png)
