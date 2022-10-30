@@ -6,7 +6,7 @@
 
     <main>
       <section class="player">
-        <h2 class="song-title">{{ current.title }}</h2>
+        <h2 class="song-title">{{}} - <span>{{}}</span></h2>
       </section>
 
     </main>
@@ -21,9 +21,31 @@ export default {
   data() {
     return {
       current: {
-        title: "SONG TITLE",
+        index: 0,
+
+      },
+      songs:[{
+        title:"Jimmy Cooks",
+        artist:"Drake & 21 Savage",
+        src: ("./assets/drake-ft-21-savage-jimmy-cooks.mp3")
+      },
+      {
+        title:"Sticky",
+        artist: "Drake",
+        src: ("./assets/drake-sticky.mp3")
+      },
+      {
+          title: "Massive",
+          artist: "Drake",
+          src: ("./assets/drake-massive.mp3")
+
       }
+      ]
     }
+  },
+
+  created() {
+    this.current = this.songs[this.index]
   }
 }
 
