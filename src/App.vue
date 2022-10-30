@@ -7,6 +7,17 @@
     <main>
       <section class="player">
         <h2 class="song-title">{{current.title}} - <span>{{current.artist}}</span></h2>
+        <div class="controls">
+          <button class="prev" @click="previous">Prev</button>
+          <button class="play" v-if="!isPlaying" @click="play">Play</button>
+          <button class="pause" v-else @click="pause">Pause</button>
+          <button class="next" @click="next">Next</button>
+        </div>
+      </section>
+      <section class="playlist">
+        <h3>The Playlist</h3>
+        <button v-for="song in songs" :key="song.src" @click="play(song)" :class="(song.src == current.src) ?
+        'song playing' : 'song'">{{song.title}} - {{song.artist}}</button>
       </section>
 
     </main>
@@ -16,27 +27,30 @@
 
 
 <script>
-
+import music1 from "./assets/drake-ft-21-savage-jimmy-cooks.mp3"
+import music2 from "./assets/drake-sticky.mp3"
+import music3 from "./assets/drake-massive.mp3"
 export default {
   data() {
     return {
       current: {
       },
       index:0,
+      isPlaying: false,
       songs:[{
         title:"Jimmy Cooks",
         artist:"Drake & 21 Savage",
-        src: require("./assets/drake-ft-21-savage-jimmy-cooks.mp3")
+        src: music1
       },
       {
         title:"Sticky",
         artist: "Drake",
-        src: require("./assets/drake-sticky.mp3")
+        src: music2
       },
       {
           title: "Massive",
           artist: "Drake",
-          src: require("./assets/drake-massive.mp3")
+          src: music3
 
       }
       ],
@@ -47,9 +61,43 @@ export default {
   created() {
     this.current = this.songs[this.index]
     this.player.src = this.current.src
-    this.player.play()
+  },
 
-  }
+  methods:{
+
+      play(song) {
+        if(typeof song.src !== "undefined"){
+          this.current = song
+          this.player.src = this.current.src
+
+        }
+        this.player.play()
+        this.isPlaying = true
+      },
+    pause() {
+        this.player.pause()
+        this.isPlaying = false
+    },
+
+    previous() {
+      this.index--
+      if(this.index < 0){
+        this.index = this.songs.length-1
+      }
+      this.current = this.songs[this.index]
+      this.play(this.current)
+    },
+    next() {
+      this.index++
+      if(this.index > this.songs.length){
+        this.index = 0
+      }
+      this.current = this.songs[this.index]
+      this.play(this.current)
+    }
+
+  },
+
 }
 
 </script>
@@ -94,23 +142,26 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px;
   padding: 30px 15px;
 }
 button {
-  appearance: none;
-  background: none;
-  border: none;
-  outline: none;
+  width: 174px;
+  height: 51px;
+  left: 40px;
+  top: 184px;
+
+  background: #000000;
+  color: #FFF;
   cursor: pointer;
 }
 button:hover {
   opacity: 0.8;
 }
 .play, .pause {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
-  padding: 15px 25px;
-  margin: 0px 15px;
+  padding: 15px;
   border-radius: 8px;
   color: #FFF;
   background-color: #CC2E5D;
